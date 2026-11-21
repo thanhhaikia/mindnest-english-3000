@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MindNest English 3000 | Từ vựng tiếng Anh giao tiếp qua hình ảnh</title>
+  <meta name="description" content="3.751 từ vựng tiếng Anh giao tiếp có hình minh họa, IPA, nghĩa tiếng Việt và câu ví dụ. Flashcard SM-2, luyện nghe shadowing, 12 tình huống hội thoại, kiểm tra 4 kỹ năng." />
+  <meta name="theme-color" content="#0b6bcb" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b6bcb'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white'%3E%E2%9C%BA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#/">
+        <span class="brand-logo">✺</span>
+        <span><b>MindNest<i>.</i></b><small>ENGLISH 3000 · SPEAKING</small></span>
+      </a>
+      <p class="side-label">Không gian học tập</p>
+      <nav class="side-nav" aria-label="Menu học tập">
+        <a href="#/" data-nav="home"><span>▦</span>Tổng quan</a>
+        <a href="#/words" data-nav="words"><span>🌟</span>Bộ 3.751 từ thông dụng<em class="badge gold" id="nav-unique">3.751</em></a>
+        <a href="#/groups" data-nav="groups"><span>▤</span>49 Nhóm chủ đề</a>
+        <a href="#/flashcards" data-nav="flashcards"><span>▣</span>Flashcards SRS<em class="badge" id="nav-due">0</em></a>
+        <a href="#/listen" data-nav="listen"><span>🎧</span>Luyện nghe &amp; Shadowing</a>
+        <a href="#/scenarios" data-nav="scenarios"><span>🗣️</span>Giao tiếp tình huống<em class="badge">12</em></a>
+        <a href="#/quiz" data-nav="quiz"><span>◇</span>Kiểm tra 4 kỹ năng</a>
+        <a href="#/saved" data-nav="saved"><span>♡</span>Từ đã lưu<em class="badge" id="nav-saved">0</em></a>
+        <a href="#/progress" data-nav="progress"><span>📈</span>Tiến độ &amp; Cài đặt</a>
+      </nav>
+      <p class="side-label">Nguồn chủ đề</p>
+      <nav class="side-nav small">
+        <a href="#/groups"><i class="dot" style="background:#14b8a6"></i>Tất cả 49 chủ đề</a>
+        <a href="#/groups?book=mm"><i class="dot" style="background:#22c55e"></i>Mind Map (19 nhóm)</a>
+        <a href="#/groups?book=use"><i class="dot" style="background:#f59e0b"></i>2.000+ Giao tiếp (30 nhóm)</a>
+      </nav>
+      <div class="goal-box" id="goal-box"></div>
+      <p class="side-foot">MindNest English 3000 · SM-2 · 2026</p>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Mở menu">☰</button>
+        <span class="topbar-tag"><i class="pulse"></i>ENGLISH COMMUNICATION &amp; VISUAL MEMORY</span>
+        <form class="search" id="search-form" role="search">
+          <span>⌕</span>
+          <input id="search-input" type="search" placeholder="Tìm từ tiếng Anh, nghĩa Việt, chủ đề..." aria-label="Tìm kiếm từ vựng" autocomplete="off" />
+        </form>
+        <div class="top-actions">
+          <div class="seg" role="group" aria-label="Giọng đọc">
+            <button type="button" data-accent="en-US" title="Giọng Anh-Mỹ">🇺🇸 US</button>
+            <button type="button" data-accent="en-GB" title="Giọng Anh-Anh">🇬🇧 UK</button>
+          </div>
+          <button type="button" class="chip-btn" id="rate-btn" title="Đổi tốc độ đọc">1.0x</button>
+          <button type="button" class="chip-btn hide-sm" id="export-btn" title="Xuất tiến độ ra JSON">⇩ Lưu tiến độ</button>
+        </div>
+      </header>
+      <div id="view" class="view" tabindex="-1">
+        <div class="loading"><div class="spinner"></div><p>Đang tải 6.976 thẻ từ vựng…</p></div>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Điều hướng nhanh">
+    <a href="#/" data-nav="home"><span>▦</span>Tổng quan</a>
+    <a href="#/groups" data-nav="groups"><span>▤</span>Chủ đề</a>
+    <a href="#/flashcards" data-nav="flashcards"><span>▣</span>Flashcard</a>
+    <a href="#/scenarios" data-nav="scenarios"><span>🗣️</span>Hội thoại</a>
+    <a href="#/quiz" data-nav="quiz"><span>◇</span>Kiểm tra</a>
+  </nav>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="icon-btn modal-close" id="modal-close" aria-label="Đóng">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

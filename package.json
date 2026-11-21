@@ -1,0 +1,14 @@
+{
+  "name": "mindnest-english-3000",
+  "version": "1.0.0",
+  "description": "Website học 3.751 từ vựng tiếng Anh giao tiếp: flashcard SM-2, luyện nghe shadowing, 12 hội thoại, kiểm tra 4 kỹ năng.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs 8080",
+    "build:data": "node scripts/build-data.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}
