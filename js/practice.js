@@ -597,7 +597,7 @@ export function renderQuiz(el, _a, q) {
     const c = qn.card;
     results.push({ key: c.key, skill: qn.skill, ok });
     const it = store.item(c.key);
-    if (!ok && it) store.grade(c.key, 2);
+    if (!ok) store.grade(c.key, 2);
     else if (ok && isDue(it)) store.grade(c.key, 4);
     $('#q-feedback', el).innerHTML = `<div class="feedback ${ok ? 'ok' : 'bad'}">
       <b>${ok ? '✓ Chính xác!' : '✗ Chưa đúng'}</b> ${note}
