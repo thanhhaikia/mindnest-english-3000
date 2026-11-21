@@ -145,6 +145,7 @@ export function renderFlashcards(el, _a, q) {
 
   const onKey = (e) => {
     if (e.target.matches('input,select,textarea')) return;
+    if ((e.code === 'Space' || e.key === 'Enter') && e.target.closest('a,button')) return;
     if (e.code === 'Space' || e.key === 'Enter') {
       e.preventDefault();
       flip();
