@@ -31,7 +31,7 @@ function isCssColor(word) {
 }
 
 /** Unique SVG illustration per word (data URI). */
-export function illustration(card) {
+export function illustration(card, { label = true } = {}) {
   const key = card.key || card.en.toLowerCase();
   const h = hashStr(key);
   const hue = h % 360, hue2 = (hue + 40 + (h >> 9) % 80) % 360;
@@ -49,8 +49,8 @@ export function illustration(card) {
     const v = hashStr(key + i);
     return `<circle cx="${v % 320}" cy="${(v >> 8) % 220}" r="${8 + ((v >> 16) % 34)}" fill="white" opacity="${(0.06 + ((v >> 4) % 10) / 70).toFixed(2)}"/>`;
   }).join('');
-  const label = card.en.length > 22 ? card.en.slice(0, 21) + '…' : card.en;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${hue},70%,62%)"/><stop offset="1" stop-color="hsl(${hue2},72%,44%)"/></linearGradient></defs><rect width="320" height="220" fill="url(#g)"/>${dots}${center}<rect x="40" y="166" width="240" height="36" rx="18" fill="white" opacity=".92"/><text x="160" y="190" font-size="17" font-weight="700" text-anchor="middle" fill="hsl(${hue2},60%,25%)" font-family="Be Vietnam Pro,Arial">${escXml(label)}</text></svg>`;
+  const text = card.en.length > 22 ? card.en.slice(0, 21) + '…' : card.en;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${hue},70%,62%)"/><stop offset="1" stop-color="hsl(${hue2},72%,44%)"/></linearGradient></defs><rect width="320" height="220" fill="url(#g)"/>${dots}${center}${label ? `<rect x="40" y="166" width="240" height="36" rx="18" fill="white" opacity=".92"/><text x="160" y="190" font-size="17" font-weight="700" text-anchor="middle" fill="hsl(${hue2},60%,25%)" font-family="Be Vietnam Pro,Arial">${escXml(text)}</text>` : ''}</svg>`;
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
 

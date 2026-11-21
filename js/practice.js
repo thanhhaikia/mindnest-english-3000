@@ -84,7 +84,7 @@ export function renderFlashcards(el, _a, q) {
     const it = store.item(c.key);
     const front = dir === 'en'
       ? `<div class="fc-pic">${pic(c, 'big')}</div><h2>${esc(c.en)}</h2><p class="ipa big">${esc(c.ipa)}</p><p class="muted">${esc(c.pos)} · ${esc(c.level)}</p>`
-      : `<div class="fc-pic">${pic(c, 'big')}</div><h2 class="vi-front">${esc(c.vi)}</h2><p class="muted">${esc(c.pos)} · ${esc(c.level)} · Từ tiếng Anh là gì?</p>`;
+      : `<div class="fc-pic">${pic(c, 'big', { hideWord: true })}</div><h2 class="vi-front">${esc(c.vi)}</h2><p class="muted">${esc(c.pos)} · ${esc(c.level)} · Từ tiếng Anh là gì?</p>`;
     const grades = [[1, '✗ Chưa nhớ', 'danger-soft'], [3, 'Khó', 'ghost'], [4, '✓ Nhớ', 'success'], [5, 'Dễ', 'primary']];
     stage.innerHTML = `<div class="flip" id="flip" tabindex="0" role="button" aria-label="Lật thẻ">
         <div class="flip-inner">
@@ -526,7 +526,7 @@ export function renderQuiz(el, _a, q) {
         ? `<p class="q-prompt">Đọc câu và chọn nghĩa của từ <b>${esc(c.en)}</b>:</p><blockquote>“${esc(c.ex)}”</blockquote><div class="options">${qn.opts.map((o, k) => `<button class="opt" data-k="${k}">${esc(o.vi)}</button>`).join('')}</div>`
         : `<p class="q-prompt">Chọn từ phù hợp điền vào chỗ trống:</p><blockquote>“${esc(qn.cloze)}”</blockquote><p class="ex-vi">${esc(c.exVi)}</p><div class="options">${qn.opts.map((o, k) => `<button class="opt" data-k="${k}">${esc(o.en)}</button>`).join('')}</div>`;
     } else if (qn.skill === 'writing') {
-      body = `<div class="q-word">${pic(c)}<div><p class="q-prompt">Viết từ tiếng Anh có nghĩa:</p><p class="vi big">${esc(c.vi)}</p><p class="muted">${esc(c.pos)} · ${esc(c.ipa)} · ${c.en.length} ký tự</p></div></div>
+      body = `<div class="q-word">${pic(c, '', { hideWord: true })}<div><p class="q-prompt">Viết từ tiếng Anh có nghĩa:</p><p class="vi big">${esc(c.vi)}</p><p class="muted">${esc(c.pos)} · ${esc(c.ipa)} · ${c.en.length} ký tự</p></div></div>
         <form class="write-form" id="w-form"><input id="w-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Gõ từ tiếng Anh…"><button class="btn primary">Kiểm tra</button><button type="button" class="btn ghost" id="w-hint">💡 Gợi ý</button></form>`;
     } else {
       body = `<div class="q-word">${pic(c)}<div><p class="q-prompt">Đọc to từ sau:</p><h2>${esc(c.en)}</h2><p class="ipa big">${esc(c.ipa)}</p><p class="vi">${esc(c.vi)}</p></div></div>

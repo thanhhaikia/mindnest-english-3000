@@ -7,7 +7,7 @@ import { statusOf, memoryStrength } from './sm2.js';
 
 export const say = (text, opts = {}) => speak(text, { lang: store.settings.accent, rate: store.settings.rate * (opts.slow ? 0.7 : 1), ...opts.lang ? { lang: opts.lang } : {} });
 
-export const pic = (card, cls = '') => `<img class="pic ${cls}" data-card="${esc(card.id)}" src="${illustration(card)}" alt="${esc(card.en)}" loading="lazy" decoding="async">`;
+export const pic = (card, cls = '', { hideWord = false } = {}) => `<img class="pic ${cls}" data-card="${esc(card.id)}" src="${illustration(card, { label: !hideWord })}" alt="${hideWord ? '' : esc(card.en)}" loading="lazy" decoding="async">`;
 
 export const sayBtn = (text, label = '🔊', cls = '') => `<button type="button" class="say-btn ${cls}" data-say="${esc(text)}" title="Nghe phát âm" aria-label="Nghe: ${esc(text)}">${label}</button>`;
 
