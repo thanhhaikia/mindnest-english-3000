@@ -25,7 +25,7 @@ function cleanSettings(s) {
     accent: src.accent === 'en-GB' ? 'en-GB' : 'en-US',
     rate: clampNum(src.rate, 0.5, 2, d.rate),
     newPerDay: Math.round(clampNum(src.newPerDay, 0, 200, d.newPerDay)),
-    sessionSize: Math.round(clampNum(src.sessionSize, 5, 100, d.sessionSize)),
+    sessionSize: Math.round(clampNum(src.sessionSize, 5, 200, d.sessionSize)),
     autoSpeak: src.autoSpeak === undefined ? d.autoSpeak : !!src.autoSpeak,
   };
 }
