@@ -156,9 +156,15 @@ export const store = {
   },
   importJSON(text) {
     const data = JSON.parse(text);
-    if (!data || typeof data.srs !== 'object') throw new Error('Tệp không hợp lệ');
+    const isObj = (v) => !!v && typeof v === 'object' && !Array.isArray(v);
+    const objOr = (v) => (isObj(v) ? v : {});
+    if (!isObj(data) || !isObj(data.srs)) throw new Error('Tệp không hợp lệ');
+    const srs = {};
+    for (const [k, it] of Object.entries(data.srs)) {
+      if (isObj(it) && Number.isFinite(it.ef) && Number.isFinite(it.reps) && Number.isFinite(it.interval) && Number.isFinite(it.due)) srs[k] = it;
+    }
     const d = defaults();
-    state = { ...d, srs: data.srs, saved: data.saved || {}, settings: cleanSettings(data.settings), daily: data.daily || {}, quiz: data.quiz || [], scenarios: data.scenarios || {} };
+    state = { ...d, srs, saved: objOr(data.saved), settings: cleanSettings(data.settings), daily: objOr(data.daily), quiz: Array.isArray(data.quiz) ? data.quiz : [], scenarios: objOr(data.scenarios) };
     persist();
   },
   reset() {
