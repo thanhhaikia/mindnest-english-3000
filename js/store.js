@@ -53,6 +53,14 @@ function persist() {
   listeners.forEach((f) => f());
 }
 
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key !== KEY && e.key !== null) return;
+    state = load();
+    listeners.forEach((f) => f());
+  });
+}
+
 function dayBucket() {
   const d = today();
   return (state.daily[d] ||= { reviews: 0, newWords: 0, correct: 0 });
