@@ -61,7 +61,7 @@ function updateShell() {
   const s = store.summary(allKeys);
   $('#nav-due').textContent = fmt(s.due);
   $('#nav-saved').textContent = fmt(s.saved);
-  const goal = store.settings.newPerDay;
+  const goal = +store.settings.newPerDay || 0;
   const done = store.newToday();
   $('#goal-box').innerHTML = `<b>Mục tiêu mỗi ngày</b><p>Học ${goal} từ mới qua hình ảnh, nghe câu mẫu và nói lớn thành tiếng.</p>${progressBar(pct(done, goal))}<small>Hôm nay: ${fmt(done)} / ${goal} từ mới · ${fmt(s.learned)} / ${fmt(allKeys.length)} từ đã thuộc</small>`;
   $$('[data-accent]').forEach((b) => b.classList.toggle('on', b.dataset.accent === store.settings.accent));

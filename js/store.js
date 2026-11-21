@@ -17,12 +17,25 @@ export function today(d = new Date()) {
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 }
 
+const clampNum = (v, min, max, dflt) => (Number.isFinite(+v) ? Math.min(max, Math.max(min, +v)) : dflt);
+function cleanSettings(s) {
+  const d = defaults().settings;
+  const src = s && typeof s === 'object' ? s : {};
+  return {
+    accent: src.accent === 'en-GB' ? 'en-GB' : 'en-US',
+    rate: clampNum(src.rate, 0.5, 2, d.rate),
+    newPerDay: Math.round(clampNum(src.newPerDay, 0, 200, d.newPerDay)),
+    sessionSize: Math.round(clampNum(src.sessionSize, 5, 100, d.sessionSize)),
+    autoSpeak: src.autoSpeak === undefined ? d.autoSpeak : !!src.autoSpeak,
+  };
+}
+
 function load() {
   try {
     const s = JSON.parse(localStorage.getItem(KEY));
     if (!s || typeof s !== 'object') return defaults();
     const d = defaults();
-    return { ...d, ...s, settings: { ...d.settings, ...(s.settings || {}) } };
+    return { ...d, ...s, settings: cleanSettings(s.settings) };
   } catch {
     return defaults();
   }
@@ -83,7 +96,7 @@ export const store = {
     return Object.entries(state.saved).sort((a, b) => b[1] - a[1]).map(([k]) => k);
   },
   setSetting(k, v) {
-    state.settings[k] = v;
+    state.settings = cleanSettings({ ...state.settings, [k]: v });
     persist();
   },
   recordQuiz(result) {
@@ -137,7 +150,7 @@ export const store = {
     const data = JSON.parse(text);
     if (!data || typeof data.srs !== 'object') throw new Error('Tệp không hợp lệ');
     const d = defaults();
-    state = { ...d, srs: data.srs, saved: data.saved || {}, settings: { ...d.settings, ...(data.settings || {}) }, daily: data.daily || {}, quiz: data.quiz || [], scenarios: data.scenarios || {} };
+    state = { ...d, srs: data.srs, saved: data.saved || {}, settings: cleanSettings(data.settings), daily: data.daily || {}, quiz: data.quiz || [], scenarios: data.scenarios || {} };
     persist();
   },
   reset() {
